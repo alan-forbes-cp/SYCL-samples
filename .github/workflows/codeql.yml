@@ -62,7 +62,7 @@ jobs:
 
     container:
       image: ghcr.io/alan-forbes-cp/sycl-samples:alan-setup
-      image: ${{ env.REGISTRY }}/${{ env.REPO_NAME }}:alan-setup
+      #image: ${{ env.REGISTRY }}/${{ env.REPO_NAME }}:alan-setup
 
     steps:
     - name: Checkout repository
