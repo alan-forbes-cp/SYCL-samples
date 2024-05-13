@@ -20,6 +20,9 @@ on:
     - cron: '40 8 * * 6'
 
 env:
+  REGISTRY: ghcr.io
+  REPO_NAME: ${{ github.repository }}
+  BRANCH_NAME: ${{ github.headref || github.ref_name }}
   BUILD_TYPE: Release
 
 jobs:
@@ -60,6 +63,7 @@ jobs:
 
     container:
       image: ghcr.io/alan-forbes-cp/sycl-samples:alan-setup
+      #image: ${{ env.REGISTRY }}/${{ env.REPO_NAME }}:${{ env.BRANCH_NAME }}
 
     steps:
     - name: Checkout repository
@@ -86,6 +90,12 @@ jobs:
     # to build your code.
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
+
+    # Configure Cmake & Build - inc. graphics
+
+    - name: Image Name
+      if: matrix.build-mode == 'manual'
+      run: echo image: ${{ env.REGISTRY }}/${{ env.REPO_NAME }}:${{ env.BRANCH_NAME }}
 
     - name: Configure CMake
       if: matrix.build-mode == 'manual'
