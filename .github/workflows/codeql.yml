@@ -93,14 +93,9 @@ jobs:
 
     # Configure Cmake & Build - inc. graphics
 
-    - name: Extract branch name
-      shell: bash
-      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-      id: extract_branch
-
     - name: Image Name
       if: matrix.build-mode == 'manual'
-      run: echo image ${{ env.REGISTRY }} ${{ env.REPO_NAME }} ${{ steps.extract_branch.output }}
+      run: echo image ${{ env.REGISTRY }} ${{ env.REPO_NAME }} ${{ env.GITHUB_REF }}
 
     - name: Configure CMake
       if: matrix.build-mode == 'manual'
