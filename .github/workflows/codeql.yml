@@ -59,7 +59,7 @@ jobs:
         # your codebase is analyzed, see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/codeql-code-scanning-for-compiled-languages
 
     container:
-      image: ghcr.io/alan-forbes-cp/sycl-samples:latest
+      image: ghcr.io/${{ github.repository }}:alan-setup
       #image: ghcr.io/alan-forbes-cp/sycl-samples:alan-setup
       #image: ghcr.io/codeplaysoftware/sycl-samples:latest
 
