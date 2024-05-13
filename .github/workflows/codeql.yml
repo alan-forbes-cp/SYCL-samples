@@ -95,7 +95,7 @@ jobs:
 
     - name: Image Name
       if: matrix.build-mode == 'manual'
-      run: echo image: ${{ env.REGISTRY }}/${{ env.REPO_NAME }}:${{ env.BRANCH_NAME }}
+      run: echo image ${{ env.REGISTRY }} ${{ env.REPO_NAME }} ${{ env.BRANCH_NAME }}
 
     - name: Configure CMake
       if: matrix.build-mode == 'manual'
