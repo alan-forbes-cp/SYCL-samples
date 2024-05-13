@@ -20,8 +20,6 @@ on:
     - cron: '40 8 * * 6'
 
 env:
-  REGISTRY: ghcr.io
-  REPO_NAME: ${{ github.repository }}
   BUILD_TYPE: Release
 
 jobs:
@@ -62,7 +60,7 @@ jobs:
 
     container:
       image: ghcr.io/alan-forbes-cp/sycl-samples:alan-setup
-      #image: ${{ env.REGISTRY }}/${{ env.REPO_NAME }}:alan-setup
+      #image: ghcr.io/codeplaysoftware/sycl-samples:latest
 
     steps:
     - name: Checkout repository
@@ -104,10 +102,11 @@ jobs:
         -DENABLE_HIP=ON -DHIP_GFX_ARCH=gfx90a
         -DCMAKE_CXX_FLAGS='-Wall -Wextra -Wpedantic -Werror'
         -G Ninja
-
-    - name: Build
-      if: matrix.build-mode == 'manual'
       run: cmake --build ${{github.workspace}}/build -- -k 0
+
+    #- name: Build
+    #  if: matrix.build-mode == 'manual'
+    #  run: cmake --build ${{github.workspace}}/build -- -k 0
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
