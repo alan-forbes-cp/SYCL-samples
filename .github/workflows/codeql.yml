@@ -22,7 +22,7 @@ on:
 env:
   REGISTRY: ghcr.io
   REPO_NAME: ${{ github.repository }}
-  BRANCH_NAME: ${{ github.headref || github.ref_name }}
+  BRANCH_NAME: ${{ github.ref_name }}
   BUILD_TYPE: Release
 
 jobs:
@@ -95,7 +95,7 @@ jobs:
 
     - name: Image Name
       if: matrix.build-mode == 'manual'
-      run: echo image ${{ env.REGISTRY }} ${{ env.REPO_NAME }} ${{ env.GITHUB_REF }}
+      run: echo image ${{ env.REGISTRY }} ${{ env.REPO_NAME }} ${{ env.BRANCH_NAME }}
 
     - name: Configure CMake
       if: matrix.build-mode == 'manual'
