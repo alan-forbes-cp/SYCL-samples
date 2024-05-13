@@ -28,6 +28,9 @@ jobs:
     outputs:
       image_tag: ${{ steps.set_image_tag.outputs.image_tag }}
 
+    container:
+      image_tag: ghcr.io/codeplaysoftware/sycl-samples:latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
