@@ -1,7 +1,5 @@
 FROM ubuntu:22.04
 
-# Comment bump
-
 # Get basic dependencies from Ubuntu repositories
 RUN apt update && apt -y install wget gpg git cmake ninja-build \
     gcc-12 libstdc++-12-dev libsdl2-dev \
