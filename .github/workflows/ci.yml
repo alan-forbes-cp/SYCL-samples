@@ -29,7 +29,8 @@ jobs:
       image_tag: ${{ steps.set_image_tag.outputs.image_tag }}
 
     container:
-      image: ghcr.io/codeplaysoftware/sycl-samples:latest
+      image: ghcr.io/alan-forbes-cp/sycl-samples:latest
+      : # image: ghcr.io/codeplaysoftware/sycl-samples:latest
 
     steps:
       - name: Checkout
