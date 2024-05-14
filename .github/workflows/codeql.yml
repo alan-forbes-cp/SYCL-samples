@@ -65,7 +65,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Fix git safe.directory in container
+    - name: Handle git 'dubious ownership/safe.directory' container warnings (reduces related CodeQL verbosity)
       if: matrix.build-mode == 'manual'
       run: git config --global --add safe.directory /__w/SYCL-samples/SYCL-samples
 
