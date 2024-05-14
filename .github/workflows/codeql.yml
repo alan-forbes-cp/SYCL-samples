@@ -65,6 +65,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Fix git safe.directory in container
+      if: matrix.build-mode == 'manual'
+      run: git config --global --add safe.directory /__w/SYCL-samples/SYCL-samples
+
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
@@ -86,10 +90,6 @@ jobs:
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
 
     # Configure Cmake & Build - no graphics
-
-    - name: Fix git safe.directory in container
-      if: matrix.build-mode == 'manual'
-      run: mkdir -p /home/runner/work/_temp/_github_home && printf "[safe]\n\tdirectory = /__w/SYCL-samples/SYCL-samples" > /home/runner/work/_temp/_github_home/.gitconfig
 
     - name: Configure CMake (no graphics)
       if: matrix.build-mode == 'manual'
