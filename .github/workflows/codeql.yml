@@ -60,8 +60,6 @@ jobs:
 
     container:
       image: intel/oneapi-basekit:latest
-      #image: ghcr.io/alan-forbes-cp/sycl-samples:alan-setup
-      #image: ghcr.io/codeplaysoftware/sycl-samples:latest
 
     steps:
     - name: Checkout repository
@@ -88,6 +86,10 @@ jobs:
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
 
     # Configure Cmake & Build - no graphics
+
+    - name: Fix git safe.directory in container
+      if: matrix.build-mode == 'manual'
+      run: mkdir -p /home/runner/work/_temp/_github_home && printf "[safe]\n\tdirectory = /__w/SYCL-samples/SYCL-samples" > /home/runner/work/_temp/_github_home/.gitconfig
 
     - name: Configure CMake (no graphics)
       if: matrix.build-mode == 'manual'
